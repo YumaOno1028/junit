@@ -4,7 +4,7 @@ public class Counter {
 
 	private int count;
 	
-	public Counter() {
+	public  Counter() {
 		count = 0;
 	}
 	
