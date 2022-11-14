@@ -1,6 +1,8 @@
 package junit.tutorial.ex03.e02;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 
 import java.io.IOException;
@@ -25,9 +27,13 @@ class LogAnalyzerTest {
 	
 	@Test
 	void test()throws Exception {
-		doThrow(new IOException()).when(logLoader).load(file);
-		assertThrows(AnalyzeException.class, ()-> logAnalyzer.analyze(file));
+		doThrow(new IOException("error by stub")).when(logLoader).load(file);
+		AnalyzeException e = assertThrows(AnalyzeException.class, ()-> logAnalyzer.analyze(file));
 
+		Throwable throwable = e.getCause();
+		assertTrue(throwable instanceof IOException);
+		assertEquals("error by stub", throwable.getMessage());
+		
 	}
 
 }
