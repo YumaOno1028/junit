@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class FrameworksTest {
 
 	@ParameterizedTest
-	@CsvSource({ "GlassFish,Oracle", "GlassFish,DB2", "GlassFish,PostgreSQL", "GlassFish,MySQL" })
+	@CsvSource({ "GlassFish,Oracle,", "GlassFish,DB2", "GlassFish,PostgreSQL", "GlassFish,MySQL" })
 	void test(ApplicationServer ap, Database da) {
 		boolean result = Frameworks.isSupport(ap, da);
 		assertTrue(result);
